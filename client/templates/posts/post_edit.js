@@ -8,10 +8,10 @@ Template.postEdit.events({
 		}
 		Meteor.call('postUpdate', postProperties, currentPostId, function(error, result) {
 			if(error)
-				return alert(error.reason);
+				return throwError(error.reason);
 
 			if(result.postUpdateExists)
-				alert('OoOps you want to edit post url to a doplicate one');
+				throwError('OoOps you want to edit post url to a doplicate one');
 
 			Router.go('postPage', {_id: currentPostId});
 		});
@@ -30,7 +30,7 @@ Template.postEdit.events({
 			var currentPostId = this._id;
 			Meteor.call('postRemove', currentPostId, function(error, result) {
 				if(error)
-					return alert(error.reason);
+					return throwError(error.reason);
 
 				Router.go('postsList');
 			});
