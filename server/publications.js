@@ -1,9 +1,9 @@
-Meteor.publish('posts', function(sort, limit) {
-	check({
+Meteor.publish('posts', function(options) {
+	check(options, {
 		sort: Object,
 		limit: Number
 	});
-	return Posts.find({}, {sort: sort, limit: limit});
+	return Posts.find({}, options);
 });
 
 Meteor.publish('comments', function(postId) {
